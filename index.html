@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SeatWise — Exam Seating Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Top bar -->
+  <header class="top">
+    <div class="brand">
+      <div class="logo">▦</div>
+      <div>
+        <h1>SeatWise</h1>
+        <p>Exam Seating Arrangement Generator</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="demo">Load demo data</button>
+      <button class="btn" id="export">↓ Export report</button>
+    </div>
+  </header>
+
+  <!-- Hero banner -->
+  <section class="hero">
+    <div>
+      <small>Smart campus utility</small>
+      <h2>Make exam seating<br>simple and organized.</h2>
+      <p>Register students, configure exam rooms, and generate a clear seating plan in a few clicks.</p>
+    </div>
+    <div class="symbol">▦</div>
+  </section>
+
+  <!-- Statistics cards -->
+  <section class="stats">
+    <div class="stat"><span>Registered students</span><strong id="ns">0</strong></div>
+    <div class="stat"><span>Examination rooms</span><strong id="nr">0</strong></div>
+    <div class="stat"><span>Total seat capacity</span><strong id="nc">0</strong></div>
+    <div class="stat"><span>Seats allocated</span><strong id="na">0</strong></div>
+  </section>
+
+  <div class="layout">
+
+    <!-- Left column: forms -->
+    <aside>
+      <section class="panel">
+        <div class="ph">
+          <div><h3>Student registration</h3><p>Add a student to the exam list</p></div>
+          <b>＋</b>
+        </div>
+        <div class="pb">
+          <form id="studentForm">
+            <div class="field">
+              <label for="roll">ROLL NUMBER</label>
+              <input id="roll" type="number" min="1" placeholder="e.g. 101" required>
+            </div>
+            <div class="field">
+              <label for="name">STUDENT NAME</label>
+              <input id="name" maxlength="60" placeholder="Enter full name" required>
+            </div>
+            <div class="field">
+              <label for="course">CLASS / COURSE</label>
+              <input id="course" maxlength="40" value="CSE-A" required>
+            </div>
+            <button class="btn primary" type="submit">Add student</button>
+            <button class="btn" type="reset">Clear</button>
+          </form>
+          <p style="font-size:12px;color:var(--muted)">Roll numbers must be unique.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="ph">
+          <div><h3>Room configuration</h3><p>Set room names and capacities</p></div>
+          <b>⌂</b>
+        </div>
+        <div class="pb">
+          <div id="rooms"></div>
+          <button class="btn" id="addRoom">＋ Add room</button>
+          <div class="note" id="notice">Configure rooms to begin seat allocation.</div>
+          <button class="btn primary" id="generate" style="width:100%">✦ Generate seating plan</button>
+          <p style="font-size:12px;color:var(--muted)">Students are sorted by roll number and assigned room by room.</p>
+        </div>
+      </section>
+    </aside>
+
+    <!-- Right column: workspace -->
+    <main>
+      <section class="panel">
+        <div class="ph">
+          <div><h3>Exam workspace</h3><p>Review students and the generated seating plan</p></div>
+          <span class="badge" id="status">Not generated</span>
+        </div>
+        <div class="pb">
+          <div class="toolbar">
+            <div class="tabs">
+              <button class="tab active" data-tab="seating">Seating chart</button>
+              <button class="tab" data-tab="students">Student list</button>
+            </div>
+            <div class="search">
+              <input id="search" placeholder="Search name or roll number">
+            </div>
+          </div>
+          <div id="workspace"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="ph">
+          <div><h3>DSA concepts used</h3><p>How the project connects to your syllabus</p></div>
+        </div>
+        <div class="pb concepts">
+          <div><b>Structures</b><p>Store roll number, name, course and seat details together.</p></div>
+          <div><b>Arrays / room layout</b><p>Represent students and seats in an organized way.</p></div>
+          <div><b>Sorting &amp; searching</b><p>Sort by roll number and search for a student.</p></div>
+          <div><b>File export</b><p>Download a text report for printing or record keeping.</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>SeatWise · DSA Mini Project · Runs locally in your browser; no server required.</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
